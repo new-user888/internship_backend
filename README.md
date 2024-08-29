@@ -7,6 +7,20 @@
 
 ## Installing:
 
+.env example:
+```
+export S3_ACCESS_KEY=YOURACCESSKEY
+export S3_SECRET_KEY=YOURSECRETKEY
+export S3_REGION=eu-west-2
+
+export BUCKET=BUCKET
+export EMAIL_USER=example@gmail.com
+export EMAIL_PASSWORD=example
+export DB_LOGIN=DBLOGIN
+export DB_PASSWORD=YOURPASS
+export DB_URL=DB_URL:5432/DATABASE
+```
+
 Build Maven project:
 
 To build the application execute the following commands in the project folder (where pom.xml and mvnw are located):
