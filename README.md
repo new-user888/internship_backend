@@ -7,6 +7,39 @@
 
 ## Installing:
 
+run command example:
+```
+docker run -d -t -i \
+    -e S3_ACCESS_KEY='EXAMPLE' \
+    -e S3_SECRET_KEY='EXAMPLE' \
+    -e S3_REGION='EXAMPLE' \
+    -e BUCKET='EXAMPLE' \
+    -e EMAIL_USER='example@gmail.com' \
+    -e EMAIL_PASSWORD='example' \
+    -e DB_LOGIN='EXAMPLE' \
+    -e DB_PASSWORD='EXAMPLE' \
+    -e DB_URL='EXAMPLE:5432/EXAMPLE' \
+    -p 8000:8080 \
+    backend
+
+```
+
+build command example:
+```
+docker build -t backend \
+    --build-arg S3_ACCESS_KEY='EXAMPLE' \
+    --build-arg S3_SECRET_KEY='EXAMPLE' \
+    --build-arg S3_REGION='EXAMPLE' \
+    --build-arg BUCKET='EXAMPLE' \
+    --build-arg EMAIL_USER='EXAMPLE' \
+    --build-arg EMAIL_PASSWORD='EXAMPLE' \
+    --build-arg DB_LOGIN='EXAMPLE' \
+    --build-arg DB_PASSWORD='EXAMPLE' \
+    --build-arg DB_URL='EXAMPLE:5432/EXAMPLE' \
+    .
+
+```
+
 .env example:
 ```
 export S3_ACCESS_KEY=YOURACCESSKEY
