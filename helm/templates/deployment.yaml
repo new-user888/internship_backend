@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  labels:
+    app: {{ .Values.deployment.app }}
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: {{ .Values.deployment.image.repository }}
+    argocd-image-updater.argoproj.io/update-strategy: {{ .Values.deployment.updateStrategy }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.app }}
+    spec:
+      containers:
+      - name: {{ .Values.deployment.container.name }}
+        image: {{ .Values.deployment.container.image }}
+        ports:
+        - containerPort: {{ .Values.deployment.container.port }}
+        resources:
+          requests:
+            cpu: {{ .Values.deployment.resources.requests.cpu }}
+            memory: {{ .Values.deployment.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.deployment.resources.limits.cpu }}
+            memory: {{ .Values.deployment.resources.limits.memory }}
+        env:
+        - name: S3_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: S3_ACCESS_KEY
+        - name: S3_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: S3_SECRET_KEY
+        - name: S3_REGION
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: S3_REGION
+        - name: BUCKET
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: BUCKET
+        - name: EMAIL_USER
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: EMAIL_USER
+        - name: EMAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: EMAIL_PASSWORD
+        - name: DB_LOGIN
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: DB_LOGIN
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: DB_PASSWORD
+        - name: DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: DB_URL

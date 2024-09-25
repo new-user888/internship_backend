@@ -1,0 +1,33 @@
+deployment:
+  name: backend-deployment
+  app: backend
+  image:
+    repository: 621994551764.dkr.ecr.eu-west-2.amazonaws.com/internship/backend-repo
+    tag: "9ab14ac"
+  container:
+    name: backend-container
+    image: 621994551764.dkr.ecr.eu-west-2.amazonaws.com/internship/backend-repo:9ab14ac	
+    port: 8080
+  replicas: 1
+  updateStrategy: latest
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "512Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  secrets:
+    name: backend-secrets
+
+service:
+  name: backend-service
+  type: NodePort
+  port: 9001
+  targetPort: 8080
+
+autoscaler:
+  namespace: default
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 75
