@@ -33,7 +33,7 @@ jobs:
         DB_LOGIN: ${{ secrets.DB_LOGIN }}
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         DB_URL: ${{ secrets.DB_URL }}
-      run: mvn test -T 4 --file pom.xml
+      run: mvn test --file pom.xml
       
   build:
     needs: ['test']
