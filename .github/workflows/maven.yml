@@ -39,6 +39,7 @@ jobs:
     needs: ['test']
     environment: dev
     runs-on: ubuntu-latest
+    permissions: write
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
