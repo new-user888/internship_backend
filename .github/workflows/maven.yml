@@ -6,8 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
     
-
-  
 jobs:
   snyk-scan:
     name: Snyk Scan
@@ -48,6 +46,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - run: chmod +x mvnw && mvn -N io.takari:maven:wrapper # granting access on maven wrapper and generating its jar
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
