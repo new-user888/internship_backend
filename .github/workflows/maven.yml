@@ -18,6 +18,7 @@ jobs:
       security-events: write
     steps:
       - uses: actions/checkout@v4
+      - run: chmod +x mvnw
       
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@b98d498629f1c368650224d6d212bf7dfa89e4bf
