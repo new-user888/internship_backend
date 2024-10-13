@@ -18,7 +18,7 @@ jobs:
       security-events: write
     steps:
       - uses: actions/checkout@v4
-      - run: chmod +x mvnw
+      - run: chmod +x mvnw && mvn -N io.takari:maven:wrapper # granting access on maven wrapper and generating its jar
       
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven-3-jdk-17@master
