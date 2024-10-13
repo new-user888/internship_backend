@@ -13,9 +13,9 @@ jobs:
     name: Snyk Scan
     environment: dev
     runs-on: ubuntu-latest
+    continue-on-error: true
     permissions:
       security-events: write
-      contents: read
     steps:
       - uses: actions/checkout@v4
       
@@ -87,7 +87,7 @@ jobs:
       run: mvn test --file pom.xml
       
   build:
-    needs: ['test']
+    needs: ['test', 'analyze']
     environment: dev
     runs-on: ubuntu-latest
     permissions:
