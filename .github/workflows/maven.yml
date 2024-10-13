@@ -11,6 +11,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
     - uses: actions/checkout@v4
     
@@ -36,6 +37,7 @@ jobs:
       
   build:
     needs: ['test']
+    environment: dev
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
