@@ -32,6 +32,7 @@ jobs:
           sarif_file: snyk.sarif
 
   test:
+    name: "Test"
     runs-on: ubuntu-latest
     environment: dev
     steps:
@@ -58,6 +59,7 @@ jobs:
       run: mvn test --file pom.xml
       
   build:
+    name: "Build, scan and push to S3"
     needs: ['test', 'snyk-scan']
     environment: dev
     runs-on: ubuntu-latest
