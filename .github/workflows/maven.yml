@@ -115,11 +115,13 @@ jobs:
         docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
         target: 'http://localhost:8080'
         cmd_options: '-a'
-
-    - run: ls ./target
     
     - name: Push to S3 Bucket
-      run: aws s3 cp ./target/demo-0.5.0-SNAPSHOT.jar s3://bucket-s3-artifactory-backend/artifact.jar
+      run: |
+        ls -la ./target/
+        mv ./target/*.jar ./artifact.jar
+        ls -la
+        aws s3 cp ./artifact.jar s3://bucket-s3-artifactory-backend/artifact.jar
 
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
