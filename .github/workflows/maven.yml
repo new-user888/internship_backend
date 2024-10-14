@@ -116,6 +116,8 @@ jobs:
         target: 'http://localhost:8080'
         cmd_options: '-a'
 
+    - run: ls ./target
+    
     - name: Push to S3 Bucket
       run: aws s3 cp ./target/*.jar s3://bucket-s3-artifactory-backend/artifact.jar
 
