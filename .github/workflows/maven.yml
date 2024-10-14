@@ -86,7 +86,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Run java application 
-      run: java -jar ./target/*.jar && sleep 60s &
+      run: java -jar ./target/*.jar && sleep 120s &
       env:
         S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
         S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
